@@ -1,4 +1,6 @@
 import numpy as np
+from transaction import Transaction
+from portfolio import Portfolio
 
 if __name__ == '__main__':
     # read in transactions file and construct list of transactions
