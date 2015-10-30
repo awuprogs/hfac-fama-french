@@ -18,7 +18,7 @@ class Transaction:
                 comm):
         # datetime.date
         self.date      = date
-        # boolean, True = Buy, False = Sell
+        # 1 = Buy, -1 = Sell
         self.direction = direction
         # string
         self.symbol    = symbol
@@ -40,9 +40,9 @@ class Transaction:
         info_arr = line.split(',')
         date = parser.parse(info_arr[0])
         if (info_arr[2][0] == 'B'):
-            direction = True
+            direction = 1
         else:
-            direction = False
+            direction = -1
         quantity = int(info_arr[3])
         symbol = info_arr[4]
         price = float(info_arr[5])
