@@ -10,12 +10,12 @@ class Transaction:
     (2) Specify these in these comments
     """
     def my_init(self,
-                 date,
-                 direction,
-                 symbol,
-                 quantity,
-                 price,
-                 comm):
+                date,
+                direction,
+                symbol,
+                quantity,
+                price,
+                comm):
         # datetime.date
         self.date      = date
         # boolean, True = Buy, False = Sell

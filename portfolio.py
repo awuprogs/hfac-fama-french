@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class Portfolio:
     """
     TODO:
@@ -8,7 +9,7 @@ class Portfolio:
     keep an instance variable start_date with the date of the transaction.
     """
     def __init__(self, transaction, last_portfolio=None):
-        pass
+
 
     """
     TODO:
@@ -17,5 +18,5 @@ class Portfolio:
     """
     def calculateValue(date):
         pass
-
+    
 

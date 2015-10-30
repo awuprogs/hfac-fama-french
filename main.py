@@ -1,6 +1,5 @@
 import numpy as np
 import transaction
-import csv
 from itertools import islice
 
 if __name__ == '__main__':
