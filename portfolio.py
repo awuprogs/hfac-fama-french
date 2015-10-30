@@ -1,6 +1,7 @@
 import numpy as np
 from yahoo_finance import Share
 import copy
+import transaction
 
 class Portfolio:
     """
@@ -25,24 +26,25 @@ class Portfolio:
             self.holdings[t.symbol] = qty
             self.holdings['cash'] = init_cash
 
-        self.holdings['cash'] -= qty * t.price
+        self.holdings['cash'] -= (qty * t.price + t.comm)
 
         # start_date
-        self.start_date = transaction.date
+        self.start_date = t.date
 
     """
     TODO:
     Given date, calculate the value of the portfolio. Try to verify that the
     date is after the start_date. Feel free to use packages 
     """
-    def calculateValue(date):
+    def calculateValue(self, date):
         value = 0.
+        date = date.strftime('%Y-%m-%d')
         for sym,qty in self.holdings.iteritems():
             if sym == "Cash":
                 value += qty
             else:
                 stock = Share(sym)
-                close_price = stock.get_historical(date, date)[0]['Adj_Close']
+                close_price = float(stock.get_historical(date, date)[0]['Adj_Close'])
                 value += close_price * qty
 
         return value
