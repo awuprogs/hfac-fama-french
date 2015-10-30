@@ -10,7 +10,7 @@ if __name__ == '__main__':
     for line in islice(f, 1, None):
         transactions.append(transaction.Transaction(line))
 
-    # # construct portfolios
+    # construct portfolios
     # portfolios = []
     # for t in transactions:
     #     if len(portfolios = 0):
