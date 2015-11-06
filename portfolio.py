@@ -44,7 +44,7 @@ class Portfolio:
         value = 0.
         date = date.strftime('%Y-%m-%d')
         for sym,qty in self.holdings.iteritems():
-            if sym == "Cash":
+            if sym == "cash":
                 value += qty
             else:
                 stock = Share(sym)
