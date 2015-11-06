@@ -4,7 +4,7 @@ from portfolio import Portfolio
 from itertools import islice
 import pandas as pd
 import datetime as dt
-
+import csv 
 
 if __name__ == '__main__':
     # read in transactions file and construct list of transactions
@@ -39,8 +39,14 @@ if __name__ == '__main__':
         values.append(portfolios[idx].calculateValue(date))
     print values
     
-    # TODO: calculate returns and/or output them
+    # stringify dates
+    string_dates = [date.to_datetime().strftime('%Y-%m-%d') for date in bizdates]
 
-    
+    # export to CSV file
+    my_csv = open('values.csv', 'w')
+    data = zip(string_dates, values)
+    a = csv.writer(my_csv)
+    a.writerows(data)
+    my_csv.close()
 
 
