@@ -2,6 +2,7 @@ import numpy as np
 from yahoo_finance import Share
 import copy
 import transaction
+import datetime
 
 
 class Portfolio:
@@ -40,16 +41,32 @@ class Portfolio:
     date is after the start_date. Feel free to use packages 
     """
 
-    def calculateValue(self, date):
+    def calculateValue(self, date, prices):
         value = 0.
         date = date.strftime('%Y-%m-%d')
         for sym,qty in self.holdings.iteritems():
             if sym == "cash":
                 value += qty
             else:
-                stock = Share(sym)
-                close_price = float(stock.get_historical(date, date)[0]['Adj_Close'])
-                value += close_price * qty
+                if sym not in prices:
+                    stock = Share(sym)
+                    # get prices until today
+                    string_today = datetime.date.today().strftime('%Y-%m-%d')
+                    # list of prices
+                    price_list = stock.get_historical(date, string_today)
+                    # initialize as dict
+                    prices[sym] = {}
+                    # convert to dictionary and put in prices dict
+                    for item in price_list:
+                        prices[sym][item['Date']] = float(item['Adj_Close'])
+                # find price for the date of interest
+                if date in prices[sym]:
+                    close_price = prices[sym][date]
+                    value += close_price * qty
+                else:
+                    print date
+                    return (None, None)
+        return (value, prices)
 
-        return value
+
 
