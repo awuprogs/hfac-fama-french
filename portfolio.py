@@ -3,6 +3,7 @@ from yahoo_finance import Share
 import copy
 import transaction
 import datetime
+import pprint
 
 
 class Portfolio:
@@ -54,6 +55,7 @@ class Portfolio:
                     string_today = datetime.date.today().strftime('%Y-%m-%d')
                     # list of prices
                     price_list = stock.get_historical(date, string_today)
+                    # pprint.PrettyPrinter(depth = 6).pprint(price_list)
                     # initialize as dict
                     prices[sym] = {}
                     # convert to dictionary and put in prices dict
@@ -65,6 +67,7 @@ class Portfolio:
                     value += close_price * qty
                 else:
                     print date
+                    print sym
                     return (None, None)
         return (value, prices)
 
